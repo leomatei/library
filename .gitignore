@@ -7,6 +7,7 @@
 .dist
 package-lock.json
 .prettierignore
+.env
 
 # testing
 /coverage
