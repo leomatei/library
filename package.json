@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@apollo/client": "^3.9.4",
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.15.9",
@@ -17,11 +18,13 @@
     "@types/react": "^18.2.55",
     "@types/react-dom": "^18.2.19",
     "axios": "^1.6.7",
+    "graphql": "^16.8.1",
     "openssl": "^2.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "^5.0.1",
     "swr": "^2.2.4",
+    "typescript-eslint": "^7.1.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
