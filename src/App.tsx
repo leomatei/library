@@ -8,8 +8,7 @@ import {
   TableRow,
   Paper
 } from '@mui/material'
-import useSWR from 'swr'
-import axios from 'axios'
+import { useQuery, gql } from '@apollo/client'
 
 import BookRow from './components/custom-table-row/'
 
@@ -20,17 +19,20 @@ interface Book {
   description: string
 }
 
-const fetcher = async (url: string): Promise<Book[]> => {
-  const response = await axios.get(url)
-  return response.data
-}
+const GET_BOOKS = gql`
+  query GetBooks {
+    getBooks {
+      id
+      title
+      author
+      description
+    }
+  }
+`
 
 const MainPage: React.FC = (): ReactNode => {
-  const { data: books, error } = useSWR<Book[]>(
-    ' http://localhost:3001/books',
-    fetcher
-  )
-  console.log(books, error)
+  const { data, error } = useQuery(GET_BOOKS)
+  const books: Book[] = data?.getBooks || []
 
   if (error) {
     return <div>Error loading books</div>

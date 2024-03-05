@@ -1,8 +1,10 @@
 # library
 
-#Server
+# server
+
 https://github.com/leomatei/library-server
 
-#run
-get this repo and run npm start to run the client
-get the server and rn npm start to run the server
+## run
+
+get this repo and run `npm start` to run the client
+get the server and run `npm start` to run the server
