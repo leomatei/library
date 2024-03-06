@@ -8,27 +8,13 @@ import {
   TableRow,
   Paper
 } from '@mui/material'
-import { useQuery, gql } from '@apollo/client'
+import { useQuery } from '@apollo/client'
 
-import BookRow from './components/custom-table-row/'
+import BookRow from '../../components/custom-table-row/'
 
-interface Book {
-  id: string
-  title: string
-  author: string
-  description: string
-}
+import { GET_BOOKS } from '../../graphql/queries'
 
-const GET_BOOKS = gql`
-  query GetBooks {
-    getBooks {
-      id
-      title
-      author
-      description
-    }
-  }
-`
+import { type Book } from '../../types'
 
 const MainPage: React.FC = (): ReactNode => {
   const { data, error } = useQuery(GET_BOOKS)
