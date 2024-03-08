@@ -36,6 +36,12 @@ module.exports = {
   },
   rules: {
     '@typescript-eslint/strict-boolean-expressions': 0,
-    strictNullChecks: 0
+    strictNullChecks: 0,
+    '@typescript-eslint/no-misused-promises': [
+      'error',
+      {
+        checksConditionals: false
+      }
+    ]
   }
 }
