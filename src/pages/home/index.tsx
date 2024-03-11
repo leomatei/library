@@ -1,4 +1,4 @@
-import React, { type ReactNode } from 'react'
+import React, { type JSX } from 'react'
 import {
   Table,
   TableBody,
@@ -18,7 +18,7 @@ import { type Book } from '../../types'
 
 import './styles.scss'
 
-const MainPage: React.FC = (): ReactNode => {
+const MainPage: React.FC = (): JSX.Element => {
   const { data, error, loading } = useQuery(GET_BOOKS)
   const books: Book[] = data?.getBooks || []
 
