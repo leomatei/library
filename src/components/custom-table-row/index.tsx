@@ -13,7 +13,6 @@ const BookRow: React.FC<Book> = ({ bookId, title, author, description }) => {
   const [descriptionToShow, setDescriptionToShow] = useState(
     description.slice(0, 30)
   )
-  console.log(bookId)
 
   return (
     <TableRow className='book-row' key={bookId}>
@@ -35,6 +34,17 @@ const BookRow: React.FC<Book> = ({ bookId, title, author, description }) => {
             <path d='M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z' />
           </svg>
         </a>
+      </TableCell>
+      <TableCell>
+        <svg
+          xmlns='http://www.w3.org/2000/svg'
+          width='20'
+          height='20'
+          viewBox='0 0 24 24'
+          fill='#FFF'
+        >
+          <path d='M3 6v18h18v-18h-18zm5 14c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm4-18v2h-20v-2h5.711c.9 0 1.631-1.099 1.631-2h5.315c0 .901.73 2 1.631 2h5.712z' />
+        </svg>
       </TableCell>
       <TableCell>{title}</TableCell>
       <TableCell>{author}</TableCell>

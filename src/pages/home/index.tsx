@@ -1,4 +1,4 @@
-import React, { type ReactNode } from 'react'
+import React, { type JSX } from 'react'
 import {
   Table,
   TableBody,
@@ -18,7 +18,7 @@ import { type Book } from '../../types'
 
 import './styles.scss'
 
-const MainPage: React.FC = (): ReactNode => {
+const MainPage: React.FC = (): JSX.Element => {
   const { data, error, loading } = useQuery(GET_BOOKS)
   const books: Book[] = data?.getBooks || []
 
@@ -29,7 +29,6 @@ const MainPage: React.FC = (): ReactNode => {
   if (error) {
     return <div>Error loading books</div>
   }
-  console.log(books)
   return (
     <div className='main-page-container'>
       <h1>My Personal Library</h1>
@@ -38,6 +37,7 @@ const MainPage: React.FC = (): ReactNode => {
           <TableHead>
             <TableRow>
               <TableCell>Edit</TableCell>
+              <TableCell>Delete</TableCell>
               <TableCell>Title</TableCell>
               <TableCell>Author</TableCell>
               <TableCell>Description</TableCell>
