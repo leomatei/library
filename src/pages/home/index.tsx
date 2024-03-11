@@ -29,7 +29,6 @@ const MainPage: React.FC = (): ReactNode => {
   if (error) {
     return <div>Error loading books</div>
   }
-  console.log(books)
   return (
     <div className='main-page-container'>
       <h1>My Personal Library</h1>
@@ -38,6 +37,7 @@ const MainPage: React.FC = (): ReactNode => {
           <TableHead>
             <TableRow>
               <TableCell>Edit</TableCell>
+              <TableCell>Delete</TableCell>
               <TableCell>Title</TableCell>
               <TableCell>Author</TableCell>
               <TableCell>Description</TableCell>
