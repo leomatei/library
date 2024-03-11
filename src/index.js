@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom/client'
 
 import MainPage from './pages/home'
 import CreateBookPage from './pages/new-book'
+import UpdateBookPage from './pages/update-book'
 import client from './client'
 
 const router = createBrowserRouter([
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
   {
     path: '/new-book',
     element: <CreateBookPage />
+  },
+  {
+    path: '/book/:id',
+    element: <UpdateBookPage />
   }
 ])
 const root = ReactDOM.createRoot(document.getElementById('root'))

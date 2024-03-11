@@ -19,13 +19,17 @@ import { type Book } from '../../types'
 import './styles.scss'
 
 const MainPage: React.FC = (): ReactNode => {
-  const { data, error } = useQuery(GET_BOOKS)
+  const { data, error, loading } = useQuery(GET_BOOKS)
   const books: Book[] = data?.getBooks || []
+
+  if (loading) {
+    return <p>Loading...</p>
+  }
 
   if (error) {
     return <div>Error loading books</div>
   }
-
+  console.log(books)
   return (
     <div className='main-page-container'>
       <h1>My Personal Library</h1>
@@ -33,6 +37,7 @@ const MainPage: React.FC = (): ReactNode => {
         <Table className='custom-table'>
           <TableHead>
             <TableRow>
+              <TableCell>Edit</TableCell>
               <TableCell>Title</TableCell>
               <TableCell>Author</TableCell>
               <TableCell>Description</TableCell>
@@ -42,6 +47,7 @@ const MainPage: React.FC = (): ReactNode => {
             {books?.map((book) => (
               <BookRow
                 key={book.id}
+                bookId={book.id}
                 title={book.title}
                 author={book.author}
                 description={book.description}
