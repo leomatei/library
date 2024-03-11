@@ -1,14 +1,32 @@
 import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.tsx'
-import client from './client'
 import { ApolloProvider } from '@apollo/client/react'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import ReactDOM from 'react-dom/client'
 
+import MainPage from './pages/home'
+import CreateBookPage from './pages/new-book'
+import UpdateBookPage from './pages/update-book'
+import client from './client'
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <MainPage />
+  },
+  {
+    path: '/new-book',
+    element: <CreateBookPage />
+  },
+  {
+    path: '/book/:id',
+    element: <UpdateBookPage />
+  }
+])
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
-      <App />
+      <RouterProvider router={router} />
     </ApolloProvider>
   </React.StrictMode>
 )

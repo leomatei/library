@@ -1,0 +1,27 @@
+.main-page-container {
+  text-align: center;
+  background-color: #ffffff;
+  height: 100%;
+}
+
+.table-container {
+  margin: 20px 0;
+}
+
+.custom-table {
+  background-color: #2196f3;
+  th,
+  td {
+    color: #ffffff;
+  }
+}
+
+.custom-button {
+  width: fit-content;
+
+  a {
+    display: flex;
+    text-decoration: none;
+    color: #000;
+  }
+}
