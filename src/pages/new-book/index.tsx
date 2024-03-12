@@ -7,18 +7,12 @@ import {
   Button,
   Typography
 } from '@mui/material'
-
 import { useMutation } from '@apollo/client'
 
 import { CREATE_BOOK } from '../../graphql/mutations'
+import { type FormData } from '../../types'
 
 import './styles.scss'
-
-interface FormData {
-  title: string
-  author: string
-  description: string
-}
 
 const CreateBookPage: React.FC = () => {
   const navigate = useNavigate()
