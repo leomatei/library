@@ -17,9 +17,7 @@ import { type Book } from '../../types'
 import './styles.scss'
 
 const MainPage: React.FC = (): JSX.Element => {
-  console.log('before query')
   const { data, error, loading } = useQuery(GET_BOOKS)
-  console.log('after query', data, error, loading)
   const books: Book[] = data?.getBooks || []
 
   if (loading) {
