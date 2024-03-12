@@ -1,4 +1,3 @@
-// client.ts
 import {
   ApolloClient,
   InMemoryCache,
@@ -6,7 +5,7 @@ import {
 } from '@apollo/client'
 
 const client = new ApolloClient<NormalizedCacheObject>({
-  uri: 'http://localhost:4000/api',
+  uri: process.env.REACT_APP_SERVER_DOMAIN,
   cache: new InMemoryCache()
 })
 

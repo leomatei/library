@@ -1,25 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import {
-  Container,
-  TextField,
-  // TextareaAutosize,
-  Button,
-  Typography
-} from '@mui/material'
-
+import { Container, TextField, Button, Typography } from '@mui/material'
 import { useMutation, useQuery } from '@apollo/client'
 
 import { GET_BOOK } from '../../graphql/queries'
 import { UPDATE_BOOK } from '../../graphql/mutations'
+import { type FormData } from '../../types'
 
 import './styles.scss'
-
-interface FormData {
-  title: string
-  author: string
-  description: string
-}
 
 const UpdateBookPage: React.FC = () => {
   const navigate = useNavigate()

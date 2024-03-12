@@ -11,9 +11,7 @@ import {
 import { useQuery } from '@apollo/client'
 
 import BookRow from '../../components/custom-table-row/'
-
 import { GET_BOOKS } from '../../graphql/queries'
-
 import { type Book } from '../../types'
 
 import './styles.scss'

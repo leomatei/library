@@ -1,15 +1,11 @@
 import React, { useState } from 'react'
 import { TableCell, TableRow } from '@mui/material'
+
+import { type BookDOM } from '../../types'
+
 import './style.scss'
 
-interface Book {
-  bookId: string
-  title: string
-  author: string
-  description: string
-}
-
-const BookRow: React.FC<Book> = ({ bookId, title, author, description }) => {
+const BookRow: React.FC<BookDOM> = ({ bookId, title, author, description }) => {
   const [descriptionToShow, setDescriptionToShow] = useState(
     description.slice(0, 30)
   )
