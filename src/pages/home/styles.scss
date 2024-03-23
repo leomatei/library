@@ -2,26 +2,39 @@
   text-align: center;
   background-color: #ffffff;
   height: 100%;
-}
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .table-container {
+    margin: 20px 0;
+    max-width: 90vw;
 
-.table-container {
-  margin: 20px 0;
-}
-
-.custom-table {
-  background-color: #2196f3;
-  th,
-  td {
-    color: #ffffff;
+    .custom-table {
+      background-color: #2196f3;
+      th,
+      td {
+        color: #ffffff;
+      }
+      &__header {
+        &__cell {
+          &.edit {
+            width: 25px;
+          }
+          &.delete {
+            width: 40px;
+          }
+        }
+      }
+    }
   }
-}
-
-.custom-button {
-  width: fit-content;
-
-  a {
-    display: flex;
-    text-decoration: none;
-    color: #000;
+  .custom-button {
+    a {
+      display: flex;
+      text-decoration: none;
+      color: #000;
+    }
+  }
+  .add-book-button-holder {
+    width: 90vw;
   }
 }

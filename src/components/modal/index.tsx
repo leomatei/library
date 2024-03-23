@@ -24,29 +24,12 @@ const CustomModal: React.FC<CustomModalProps> = ({
 }) => {
   return (
     <Modal open={open} onClose={onClose}>
-      <div
-        className='modal'
-        style={{
-          position: 'absolute',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-          backgroundColor: 'background.paper',
-          boxShadow: '24',
-          borderRadius: 4
-        }}
-      >
+      <div className='modal'>
         <Typography variant='h5' gutterBottom>
           {title}
         </Typography>
         <div>{children}</div>
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'flex-end',
-            marginTop: '20px'
-          }}
-        >
+        <div className='modal__footer'>
           {acceptText?.length && (
             <Button
               variant='contained'
@@ -63,7 +46,6 @@ const CustomModal: React.FC<CustomModalProps> = ({
         </div>
       </div>
     </Modal>
-    // </div>
   )
 }
 

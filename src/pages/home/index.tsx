@@ -6,8 +6,7 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-  Paper,
-  Typography
+  Paper
 } from '@mui/material'
 import { useQuery, useMutation } from '@apollo/client'
 
@@ -17,20 +16,11 @@ import BookRow from '../../components/custom-table-row/'
 import { GET_BOOKS } from '../../graphql/queries'
 import { DELETE_BOOK } from '../../graphql/mutations'
 import { type Book } from '../../types'
+import { MODAL_TYPES } from '../../utils/modal-types'
+
+import PlusSVG from '../../assets/svgs/plus.svg'
 
 import './styles.scss'
-
-const MODAL_TYPES = {
-  DELETE: {
-    body: (book: Book) => (
-      <>
-        <Typography variant='body1' gutterBottom>
-          {`Are you sure you want to delete ${book.title} by ${book.author}`}
-        </Typography>
-      </>
-    )
-  }
-}
 
 const MainPage: React.FC = (): JSX.Element => {
   const [showModal, setShowModal] = useState(false)
@@ -74,6 +64,7 @@ const MainPage: React.FC = (): JSX.Element => {
 
   return (
     <ModalContext.Provider value={contextValue}>
+      {/* populate CustomModal attributes using modal_types  */}
       {showModal && selectedBook && modalType && modalType in MODAL_TYPES && (
         <CustomModal
           open={showModal}
@@ -92,18 +83,34 @@ const MainPage: React.FC = (): JSX.Element => {
       )}
       <div className='main-page-container'>
         <h1>My Personal Library</h1>
+        <div className='custom-button add-book-button-holder'>
+          <a href='/new-book'>
+            <img width={'20px'} height={'20px'} src={PlusSVG} />
+            Add new book
+          </a>
+        </div>
         <TableContainer component={Paper} className='table-container'>
           <Table className='custom-table'>
-            <TableHead>
+            <TableHead className='custom-table__header'>
               <TableRow>
-                <TableCell>Edit</TableCell>
-                <TableCell>Delete</TableCell>
-                <TableCell>Title</TableCell>
-                <TableCell>Author</TableCell>
-                <TableCell>Description</TableCell>
+                <TableCell className='custom-table__header__cell edit'>
+                  Edit
+                </TableCell>
+                <TableCell className='custom-table__header__cell delete'>
+                  Delete
+                </TableCell>
+                <TableCell className='custom-table__header__cell text'>
+                  Title
+                </TableCell>
+                <TableCell className='custom-table__header__cell text'>
+                  Author
+                </TableCell>
+                <TableCell className='custom-table__header__cell text'>
+                  Description
+                </TableCell>
               </TableRow>
             </TableHead>
-            <TableBody>
+            <TableBody className='custom-table__body'>
               {books?.map((book) => (
                 <BookRow
                   key={book.id}
@@ -116,25 +123,6 @@ const MainPage: React.FC = (): JSX.Element => {
             </TableBody>
           </Table>
         </TableContainer>
-        <div className='custom-button'>
-          <a href='/new-book'>
-            <svg
-              xmlns='http://www.w3.org/2000/svg'
-              width='16'
-              height='16'
-              viewBox='0 0 24 24'
-              fill='none'
-              stroke='currentColor'
-              strokeWidth='4'
-              strokeLinecap='round'
-              strokeLinejoin='round'
-            >
-              <line x1='12' y1='5' x2='12' y2='19'></line>
-              <line x1='5' y1='12' x2='19' y2='12'></line>
-            </svg>
-            Add new book
-          </a>
-        </div>
       </div>
     </ModalContext.Provider>
   )
