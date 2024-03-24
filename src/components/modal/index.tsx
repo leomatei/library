@@ -1,17 +1,9 @@
-import React, { type ReactNode } from 'react'
+import React from 'react'
 import { Button, Modal, Typography } from '@mui/material'
 
-import './styles.scss'
+import { type CustomModalProps } from '../../types'
 
-interface CustomModalProps {
-  open: boolean
-  closeText: string
-  onClose: () => void
-  acceptText: string
-  onAccept: () => void
-  title: string
-  children: ReactNode
-}
+import './styles.scss'
 
 const CustomModal: React.FC<CustomModalProps> = ({
   open,

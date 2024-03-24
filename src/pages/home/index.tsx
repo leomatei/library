@@ -1,4 +1,4 @@
-import React, { useState, type JSX } from 'react'
+import React, { useState, useEffect, type JSX } from 'react'
 import {
   Table,
   TableBody,
@@ -15,7 +15,7 @@ import { ModalContext } from '../../custom-hooks/modalContextProvider'
 import BookRow from '../../components/custom-table-row/'
 import { GET_BOOKS } from '../../graphql/queries'
 import { DELETE_BOOK } from '../../graphql/mutations'
-import { type Book } from '../../types'
+import { type Book, type ModalValuesProps } from '../../types'
 import { MODAL_TYPES } from '../../utils/modal-types'
 
 import PlusSVG from '../../assets/svgs/plus.svg'
@@ -26,6 +26,7 @@ const MainPage: React.FC = (): JSX.Element => {
   const [showModal, setShowModal] = useState(false)
   const [selectedBook, setSelectedBook] = useState<Book | null>(null)
   const [modalType, setModalType] = useState<string | null>(null)
+  const [modalValues, setModalValues] = useState<ModalValuesProps | null>(null)
   const contextValue = {
     showModal,
     setShowModal,
@@ -54,6 +55,14 @@ const MainPage: React.FC = (): JSX.Element => {
   }
   const books: Book[] = data?.getBooks || []
 
+  useEffect(() => {
+    if (selectedBook && modalType && modalType in MODAL_TYPES) {
+      setModalValues(
+        MODAL_TYPES[modalType as keyof typeof MODAL_TYPES](selectedBook)
+      )
+    }
+  }, [selectedBook])
+
   if (loading) {
     return <p>Loading...</p>
   }
@@ -64,21 +73,18 @@ const MainPage: React.FC = (): JSX.Element => {
 
   return (
     <ModalContext.Provider value={contextValue}>
-      {/* populate CustomModal attributes using modal_types  */}
-      {showModal && selectedBook && modalType && modalType in MODAL_TYPES && (
+      {showModal && modalValues && (
         <CustomModal
           open={showModal}
-          title={`delete ${selectedBook.title}`}
-          acceptText='Delete'
+          title={modalValues.title}
+          acceptText={modalValues.acceptText}
           onAccept={deleteBook}
-          closeText='Cancel'
+          closeText={modalValues.closeText}
           onClose={() => {
             setShowModal(false)
           }}
         >
-          {MODAL_TYPES[modalType as keyof typeof MODAL_TYPES].body(
-            selectedBook
-          )}
+          {modalValues.body}
         </CustomModal>
       )}
       <div className='main-page-container'>

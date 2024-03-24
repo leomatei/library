@@ -1,15 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { TextField, TextareaAutosize, Button } from '@mui/material'
-import { type FormData } from '../../types'
+import { type FormData, type BookFormProps } from '../../types'
 import './styles.scss'
-
-interface BookFormProps {
-  title?: string
-  author?: string
-  description?: string
-  handleSubmit: (e: React.FormEvent, formData: FormData) => Promise<void>
-  buttonText: string
-}
 
 const BookForm: React.FC<BookFormProps> = ({
   title = '',
