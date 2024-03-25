@@ -1,17 +1,9 @@
-import React, { type ReactNode } from 'react'
+import React from 'react'
 import { Button, Modal, Typography } from '@mui/material'
 
-import './styles.scss'
+import { type CustomModalProps } from '../../types'
 
-interface CustomModalProps {
-  open: boolean
-  closeText: string
-  onClose: () => void
-  acceptText: string
-  onAccept: () => void
-  title: string
-  children: ReactNode
-}
+import './styles.scss'
 
 const CustomModal: React.FC<CustomModalProps> = ({
   open,
@@ -24,36 +16,14 @@ const CustomModal: React.FC<CustomModalProps> = ({
 }) => {
   return (
     <Modal open={open} onClose={onClose}>
-      <div
-        className='modal'
-        style={{
-          position: 'absolute',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-          backgroundColor: 'background.paper',
-          boxShadow: '24',
-          borderRadius: 4
-        }}
-      >
+      <div className='modal'>
         <Typography variant='h5' gutterBottom>
           {title}
         </Typography>
         <div>{children}</div>
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'flex-end',
-            marginTop: '20px'
-          }}
-        >
+        <div className='modal__footer'>
           {acceptText?.length && (
-            <Button
-              variant='contained'
-              onClick={onAccept}
-              color='primary'
-              style={{ marginRight: '10px' }}
-            >
+            <Button variant='contained' onClick={onAccept} color='primary'>
               {acceptText}
             </Button>
           )}
@@ -63,7 +33,6 @@ const CustomModal: React.FC<CustomModalProps> = ({
         </div>
       </div>
     </Modal>
-    // </div>
   )
 }
 

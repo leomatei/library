@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { Container, TextField, Button, Typography } from '@mui/material'
+import { Container, Typography } from '@mui/material'
 import { useMutation, useQuery } from '@apollo/client'
 
 import { GET_BOOK } from '../../graphql/queries'
 import { UPDATE_BOOK } from '../../graphql/mutations'
 import { type FormData } from '../../types'
+import BookForm from '../../components/book-form'
 
 import './styles.scss'
 
@@ -22,29 +23,18 @@ const UpdateBookPage: React.FC = () => {
     variables: { id }
   })
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ): void => {
-    const { name, value } = e.target
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value
-    }))
-  }
-
   const [updateBookMutation] = useMutation(UPDATE_BOOK)
 
-  const handleSubmit = async (e: React.FormEvent): Promise<void> => {
+  const handleSubmit = async (
+    e: React.FormEvent,
+    formData: FormData
+  ): Promise<void> => {
     e.preventDefault()
 
     await updateBookMutation({
       variables: {
         id,
-        input: {
-          title: formData.title,
-          author: formData.author,
-          description: formData.description
-        }
+        input: formData
       }
     })
       .then(() => {
@@ -59,9 +49,9 @@ const UpdateBookPage: React.FC = () => {
     if (data?.getBook) {
       const { title, author, description } = data.getBook
       setFormData({
-        title: title || '',
-        author: author || '',
-        description: description || ''
+        title,
+        author,
+        description
       })
     }
   }, [data])
@@ -80,46 +70,15 @@ const UpdateBookPage: React.FC = () => {
       <Typography variant='h4' gutterBottom>
         Update Book
       </Typography>
-      {/*  eslint-disable-next-line @typescript-eslint/no-misused-promises */}
-      <form onSubmit={handleSubmit}>
-        <TextField
-          fullWidth
-          id='title'
-          name='title'
-          label='Title'
-          variant='outlined'
-          margin='normal'
-          value={formData.title}
-          onChange={handleChange}
-          required
+      {data.getBook && (
+        <BookForm
+          title={formData.title}
+          author={formData.author}
+          description={formData.description}
+          handleSubmit={handleSubmit}
+          buttonText='Update Book'
         />
-
-        <TextField
-          fullWidth
-          id='author'
-          name='author'
-          label='Author'
-          variant='outlined'
-          margin='normal'
-          value={formData.author}
-          onChange={handleChange}
-          required
-        />
-        <textarea
-          id='description'
-          name='description'
-          aria-label='Description'
-          placeholder='Description'
-          value={formData.description}
-          onChange={handleChange}
-          style={{ marginBottom: 16, resize: 'vertical' }}
-          required
-        />
-
-        <Button type='submit' variant='contained' color='primary'>
-          Update Book
-        </Button>
-      </form>
+      )}
     </Container>
   )
 }
