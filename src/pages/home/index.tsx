@@ -15,6 +15,7 @@ import BookRow from '../../components/custom-table-row/'
 import { GET_BOOKS } from '../../graphql/queries'
 import { type Book } from '../../types'
 import ModalDelete from '../../components/modal-delete'
+import ModalDetailsBook from '../../components/modal-book-details'
 
 import PlusSVG from '../../assets/svgs/plus.svg'
 
@@ -39,6 +40,20 @@ const MainPage: React.FC = (): JSX.Element => {
   }
   const books: Book[] = data?.getBooks || []
 
+  const ModalContent: React.FC = () => {
+    if (modalType) {
+      switch (modalType) {
+        case 'DELETE':
+          return <ModalDelete deleteCallback={deleteCallback} />
+        case 'DETAILS':
+          return <ModalDetailsBook />
+        default:
+          return <></>
+      }
+    }
+    return <></>
+  }
+
   if (loading) {
     return <p>Loading...</p>
   }
@@ -49,7 +64,7 @@ const MainPage: React.FC = (): JSX.Element => {
 
   return (
     <ModalContext.Provider value={contextValue}>
-      <ModalDelete deleteCallback={deleteCallback} />
+      <ModalContent />
       <div className='main-page-container'>
         <h1>My Personal Library</h1>
         <div className='custom-button add-book-button-holder'>

@@ -25,7 +25,7 @@ export interface CustomModalProps {
   closeText: string
   onClose: () => void
   acceptText?: string
-  onAccept: () => void
+  onAccept?: () => void
   title: string
   children: ReactNode
 }
@@ -45,13 +45,6 @@ export interface ModalContextProps {
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>
   setSelectedBook: React.Dispatch<React.SetStateAction<Book | null>>
   setModalType: React.Dispatch<React.SetStateAction<string | null>>
-}
-
-export interface ModalValuesProps {
-  title: string
-  body: React.ReactNode
-  acceptText?: string
-  closeText: string
 }
 
 export interface ModalDeleteProps {

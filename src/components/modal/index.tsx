@@ -23,12 +23,7 @@ const CustomModal: React.FC<CustomModalProps> = ({
         <div>{children}</div>
         <div className='modal__footer'>
           {acceptText?.length && (
-            <Button
-              variant='contained'
-              onClick={onAccept}
-              color='primary'
-              style={{ marginRight: '10px' }}
-            >
+            <Button variant='contained' onClick={onAccept} color='primary'>
               {acceptText}
             </Button>
           )}
