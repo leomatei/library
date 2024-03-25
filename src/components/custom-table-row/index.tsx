@@ -12,9 +12,9 @@ const BookRow: React.FC<BookDOM> = ({ bookId, title, author, description }) => {
   const { setShowModal, setSelectedBook, setModalType } =
     useContext(ModalContext)
 
-  const handleDeleteClick = (): void => {
+  const handleShowModal = (modalType: string): void => {
     setSelectedBook({ id: bookId, title, author, description })
-    setModalType('DELETE')
+    setModalType(modalType)
     setShowModal(true)
   }
 
@@ -26,13 +26,24 @@ const BookRow: React.FC<BookDOM> = ({ bookId, title, author, description }) => {
         </a>
       </TableCell>
       <TableCell>
-        <div onClick={handleDeleteClick}>
+        <div
+          onClick={() => {
+            handleShowModal('DELETE')
+          }}
+        >
           <img width={'20px'} height={'20px'} src={DeleteSVG} />
         </div>
       </TableCell>
       <TableCell>{title}</TableCell>
       <TableCell>{author}</TableCell>
-      <TableCell className='book-row__description'>{description}</TableCell>
+      <TableCell
+        className='book-row__description'
+        onClick={() => {
+          handleShowModal('DETAILS')
+        }}
+      >
+        {description}
+      </TableCell>
     </TableRow>
   )
 }

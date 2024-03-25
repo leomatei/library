@@ -1,4 +1,4 @@
-import React, { useState, useEffect, type JSX } from 'react'
+import React, { useState, type JSX } from 'react'
 import {
   Table,
   TableBody,
@@ -8,15 +8,13 @@ import {
   TableRow,
   Paper
 } from '@mui/material'
-import { useQuery, useMutation } from '@apollo/client'
+import { useQuery } from '@apollo/client'
 
-import CustomModal from '../../components/modal'
 import { ModalContext } from '../../custom-hooks/modalContextProvider'
 import BookRow from '../../components/custom-table-row/'
 import { GET_BOOKS } from '../../graphql/queries'
-import { DELETE_BOOK } from '../../graphql/mutations'
-import { type Book, type ModalValuesProps } from '../../types'
-import { MODAL_TYPES } from '../../utils/modal-types'
+import { type Book } from '../../types'
+import ModalDelete from '../../components/modal-delete'
 
 import PlusSVG from '../../assets/svgs/plus.svg'
 
@@ -26,7 +24,7 @@ const MainPage: React.FC = (): JSX.Element => {
   const [showModal, setShowModal] = useState(false)
   const [selectedBook, setSelectedBook] = useState<Book | null>(null)
   const [modalType, setModalType] = useState<string | null>(null)
-  const [modalValues, setModalValues] = useState<ModalValuesProps | null>(null)
+
   const contextValue = {
     showModal,
     setShowModal,
@@ -35,33 +33,11 @@ const MainPage: React.FC = (): JSX.Element => {
     modalType,
     setModalType
   }
-  const [deleteBookMutation] = useMutation(DELETE_BOOK)
   const { data, error, loading, refetch } = useQuery(GET_BOOKS)
-  const deleteBook: () => void = () => {
-    if (selectedBook) {
-      deleteBookMutation({
-        variables: { id: selectedBook.id }
-      })
-        .then(() => {
-          setShowModal(false)
-          setSelectedBook(null)
-          setModalType(null)
-          void refetch()
-        })
-        .catch(() => {
-          console.log('Something whent wrong!')
-        })
-    }
+  const deleteCallback: () => void = () => {
+    void refetch()
   }
   const books: Book[] = data?.getBooks || []
-
-  useEffect(() => {
-    if (selectedBook && modalType && modalType in MODAL_TYPES) {
-      setModalValues(
-        MODAL_TYPES[modalType as keyof typeof MODAL_TYPES](selectedBook)
-      )
-    }
-  }, [selectedBook])
 
   if (loading) {
     return <p>Loading...</p>
@@ -73,20 +49,7 @@ const MainPage: React.FC = (): JSX.Element => {
 
   return (
     <ModalContext.Provider value={contextValue}>
-      {showModal && modalValues && (
-        <CustomModal
-          open={showModal}
-          title={modalValues.title}
-          acceptText={modalValues.acceptText}
-          onAccept={deleteBook}
-          closeText={modalValues.closeText}
-          onClose={() => {
-            setShowModal(false)
-          }}
-        >
-          {modalValues.body}
-        </CustomModal>
-      )}
+      <ModalDelete deleteCallback={deleteCallback} />
       <div className='main-page-container'>
         <h1>My Personal Library</h1>
         <div className='custom-button add-book-button-holder'>

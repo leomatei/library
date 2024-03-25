@@ -24,7 +24,7 @@ export interface CustomModalProps {
   open: boolean
   closeText: string
   onClose: () => void
-  acceptText: string
+  acceptText?: string
   onAccept: () => void
   title: string
   children: ReactNode
@@ -50,6 +50,10 @@ export interface ModalContextProps {
 export interface ModalValuesProps {
   title: string
   body: React.ReactNode
-  acceptText: string
+  acceptText?: string
   closeText: string
+}
+
+export interface ModalDeleteProps {
+  deleteCallback: () => void
 }
