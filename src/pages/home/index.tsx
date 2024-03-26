@@ -18,6 +18,7 @@ import ModalDelete from '../../components/modal-delete'
 import ModalDetailsBook from '../../components/modal-book-details'
 
 import PlusSVG from '../../assets/svgs/plus.svg'
+import RefreshSVG from '../../assets/svgs/refresh.svg'
 
 import './styles.scss'
 
@@ -59,7 +60,23 @@ const MainPage: React.FC = (): JSX.Element => {
   }
 
   if (error) {
-    return <div>Error loading books</div>
+    return (
+      <div className='error'>
+        <p>
+          Error loading books.
+          <br /> Try refreshing the page up to three times. The Postgres DB on
+          Vercel stops after 5 minutes of inactivity.
+        </p>
+        <img
+          width='40px'
+          height='40px'
+          src={RefreshSVG}
+          onClick={() => {
+            window.location.reload()
+          }}
+        />
+      </div>
+    )
   }
 
   return (

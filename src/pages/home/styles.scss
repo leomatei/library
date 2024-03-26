@@ -38,3 +38,19 @@
     width: 90vw;
   }
 }
+
+.error {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  p {
+    font-size: 28px;
+    text-align: center;
+  }
+}
+
+img {
+  cursor: pointer;
+}
