@@ -9,6 +9,7 @@ import {
   Paper
 } from '@mui/material'
 import { useQuery } from '@apollo/client'
+import cx from 'classnames'
 
 import { ModalContext } from '../../custom-hooks/modalContextProvider'
 import BookRow from '../../components/custom-table-row/'
@@ -78,12 +79,18 @@ const MainPage: React.FC = (): JSX.Element => {
       </div>
     )
   }
+  const HEADER_COLUMNS = [
+    { column: 'Edit', type: 'edit' },
+    { column: 'Delete', type: 'delete' },
+    { column: 'Title', type: 'text' },
+    { column: 'Author', type: 'text' },
+    { column: 'Description', type: 'text' }
+  ]
 
   return (
     <ModalContext.Provider value={contextValue}>
       <ModalContent />
       <div className='main-page-container'>
-        <h1>My Personal Library</h1>
         <div className='custom-button add-book-button-holder'>
           <a href='/new-book'>
             <img width={'20px'} height={'20px'} src={PlusSVG} />
@@ -94,21 +101,23 @@ const MainPage: React.FC = (): JSX.Element => {
           <Table className='custom-table'>
             <TableHead className='custom-table__header'>
               <TableRow>
-                <TableCell className='custom-table__header__cell edit'>
-                  Edit
-                </TableCell>
-                <TableCell className='custom-table__header__cell delete'>
-                  Delete
-                </TableCell>
-                <TableCell className='custom-table__header__cell text'>
-                  Title
-                </TableCell>
-                <TableCell className='custom-table__header__cell text'>
-                  Author
-                </TableCell>
-                <TableCell className='custom-table__header__cell text'>
-                  Description
-                </TableCell>
+                {HEADER_COLUMNS.map((column, index) => {
+                  return (
+                    <TableCell
+                      key={index}
+                      className={`custom-table__header__cell ${column.type}`}
+                    >
+                      <div
+                        className={cx(
+                          'custom-table__header__cell__random-wrapper',
+                          `random-wrapper-${index}`
+                        )}
+                      >
+                        <p>{column.column}</p>
+                      </div>
+                    </TableCell>
+                  )
+                })}
               </TableRow>
             </TableHead>
             <TableBody className='custom-table__body'>

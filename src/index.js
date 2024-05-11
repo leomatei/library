@@ -8,6 +8,8 @@ import CreateBookPage from './pages/new-book'
 import UpdateBookPage from './pages/update-book'
 import client from './client'
 
+import './styles.scss'
+
 const router = createBrowserRouter([
   {
     path: '/',
@@ -26,6 +28,9 @@ const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
+      <div className='LCP'>
+        <h1>My Personal Library</h1>
+      </div>
       <RouterProvider router={router} />
     </ApolloProvider>
   </React.StrictMode>

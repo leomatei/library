@@ -1,0 +1,15 @@
+@import './functions.scss';
+
+@mixin assign-random-heights-table-header(
+  $start,
+  $end,
+  $min-height,
+  $max-height
+) {
+  @for $i from $start through $end {
+    .random-wrapper-#{$i} {
+      height: random-height($min-height, $max-height);
+      background-color: red;
+    }
+  }
+}

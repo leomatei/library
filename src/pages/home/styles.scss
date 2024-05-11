@@ -1,7 +1,10 @@
+@import '../../mixins.scss';
+
 .main-page-container {
+  padding-top: 145px;
   text-align: center;
-  background-color: #ffffff;
-  height: 100%;
+  height: calc(100vh - 145px);
+  width: 100vw;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -10,19 +13,44 @@
     max-width: 90vw;
 
     .custom-table {
-      background-color: #2196f3;
+      border: 10px solid #a86440;
+      background-color: #4d2a19;
       th,
       td {
         color: #ffffff;
       }
+
+      tbody tr:not(:last-child) {
+        border-bottom: 10px solid #a86440;
+      }
+
       &__header {
+        th {
+          padding: 0 0 5px 10px;
+          position: relative;
+        }
+        height: 80px;
         &__cell {
+          &__random-wrapper {
+            position: absolute;
+            bottom: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            p {
+              margin: 0;
+            }
+          }
+          @include assign-random-heights-table-header(0, 4, 30, 65);
           &.edit {
             width: 25px;
           }
           &.delete {
             width: 40px;
           }
+        }
+        tr {
+          border-bottom: 10px solid #a86440;
         }
       }
     }
