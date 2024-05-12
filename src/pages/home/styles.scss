@@ -41,7 +41,8 @@
               margin: 0;
             }
           }
-          @include assign-random-heights-table-header(0, 4, 30, 65);
+
+          @include assign-random-heights-table-header(0, 4, 30, 58);
           &.edit {
             width: 25px;
           }
@@ -81,4 +82,43 @@
 
 img {
   cursor: pointer;
+}
+
+.box {
+  position: relative;
+
+  padding: 0 3px;
+  .lid {
+    width: calc(100% + 2.5px);
+    height: 19px;
+    position: absolute;
+    top: -10px;
+    left: -1.25px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.5);
+  }
+}
+.box-0,
+.lid-0 {
+  background: url('../../assets/pngs/pink-box.png') no-repeat center center;
+  background-size: cover;
+}
+.box-1,
+.lid-1 {
+  background: url('../../assets/pngs/blue-box.png') no-repeat center center;
+  background-size: cover;
+}
+.box-2,
+.lid-2 {
+  background: url('../../assets/pngs/green-box.png') no-repeat center center;
+  background-size: cover;
+}
+.box-3,
+.lid-3 {
+  background: url('../../assets/pngs/orange-box.png') no-repeat center center;
+  background-size: cover;
+}
+.box-4,
+.lid-4 {
+  background: url('../../assets/pngs/yellow-box.png') no-repeat center center;
+  background-size: cover;
 }

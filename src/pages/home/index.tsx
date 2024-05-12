@@ -110,9 +110,12 @@ const MainPage: React.FC = (): JSX.Element => {
                       <div
                         className={cx(
                           'custom-table__header__cell__random-wrapper',
-                          `random-wrapper-${index}`
+                          `random-wrapper-${index}`,
+                          'box',
+                          `box-${index}`
                         )}
                       >
+                        <div className={cx('lid', `lid-${index}`)}></div>
                         <p>{column.column}</p>
                       </div>
                     </TableCell>
