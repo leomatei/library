@@ -1,15 +1,13 @@
 @import '../../mixins.scss';
 
 .main-page-container {
-  padding-top: 145px;
   text-align: center;
-  height: calc(100vh - 145px);
+  height: 100%;
   width: 100vw;
   display: flex;
   flex-direction: column;
   align-items: center;
   .table-container {
-    margin: 20px 0;
     max-width: 90vw;
 
     .custom-table {
@@ -18,6 +16,12 @@
       th,
       td {
         color: #ffffff;
+        font-weight: 700;
+        text-shadow:
+          -1px -1px 0 #000,
+          1px -1px 0 #000,
+          -1px 1px 0 #000,
+          1px 1px 0 #000;
       }
 
       tbody tr:not(:last-child) {
@@ -32,6 +36,7 @@
         height: 80px;
         &__cell {
           &__random-wrapper {
+            padding: 0 2px;
             position: absolute;
             bottom: 0;
             display: flex;
@@ -56,15 +61,40 @@
       }
     }
   }
-  .custom-button {
-    a {
-      display: flex;
-      text-decoration: none;
-      color: #000;
-    }
-  }
-  .add-book-button-holder {
+  .button-container {
+    display: flex;
     width: 90vw;
+    .custom-button {
+      a {
+        display: flex;
+        text-decoration: none;
+        color: #000;
+      }
+    }
+    .add-book-button-holder {
+      width: 100px;
+      height: 180px;
+      background: url('../../assets/flower-pot.webp') no-repeat center center;
+      background-size: cover;
+      position: relative;
+
+      a {
+        position: absolute;
+        bottom: 15%;
+
+        p {
+          width: 90px;
+          color: #ffffff;
+          font-weight: 700;
+          text-shadow:
+            -1px -1px 0 #000,
+            1px -1px 0 #000,
+            -1px 1px 0 #000,
+            1px 1px 0 #000;
+          margin: 10px 0 0 0;
+        }
+      }
+    }
   }
 }
 

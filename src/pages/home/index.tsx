@@ -18,7 +18,6 @@ import { type Book } from '../../types'
 import ModalDelete from '../../components/modal-delete'
 import ModalDetailsBook from '../../components/modal-book-details'
 
-import PlusSVG from '../../assets/svgs/plus.svg'
 import RefreshSVG from '../../assets/svgs/refresh.svg'
 
 import './styles.scss'
@@ -91,11 +90,12 @@ const MainPage: React.FC = (): JSX.Element => {
     <ModalContext.Provider value={contextValue}>
       <ModalContent />
       <div className='main-page-container'>
-        <div className='custom-button add-book-button-holder'>
-          <a href='/new-book'>
-            <img width={'20px'} height={'20px'} src={PlusSVG} />
-            Add new book
-          </a>
+        <div className='button-container'>
+          <div className='custom-button add-book-button-holder'>
+            <a href='/new-book'>
+              <p>Add new book</p>
+            </a>
+          </div>
         </div>
         <TableContainer component={Paper} className='table-container'>
           <Table className='custom-table'>
