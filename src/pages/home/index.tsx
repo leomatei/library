@@ -136,6 +136,10 @@ const MainPage: React.FC = (): JSX.Element => {
             </TableBody>
           </Table>
         </TableContainer>
+        <div className='table-footer'>
+          <div className='trapezium'></div>
+          <div className='trapezium'></div>
+        </div>
       </div>
     </ModalContext.Provider>
   )
