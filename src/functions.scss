@@ -1,0 +1,3 @@
+@function random-height($min, $max) {
+  @return #{random($max - $min) + $min}px;
+}

@@ -1,8 +1,11 @@
 .modal {
-  background-color: white;
+  background: url('../../assets/pngs/opened-book.png') no-repeat center center;
+  background-size: cover;
+  width: 500px;
+  height: 345px;
+  box-sizing: border-box;
   border-radius: 8px;
-  padding: 20px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  padding: 35px;
   position: absolute;
   top: 50%;
   left: 50%;
