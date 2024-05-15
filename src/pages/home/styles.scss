@@ -1,0 +1,208 @@
+@import '../../mixins.scss';
+
+.main-page-container {
+  text-align: center;
+  height: 100%;
+  width: 690px;
+  margin: 0 5vw;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .table-container {
+    width: inherit;
+    .custom-table {
+      border: 10px solid #a86440;
+      background-color: #4d2a19;
+      th,
+      td {
+        color: #ffffff;
+        font-weight: 700;
+        text-shadow:
+          -1px -1px 0 #000,
+          1px -1px 0 #000,
+          -1px 1px 0 #000,
+          1px 1px 0 #000;
+      }
+
+      th:last-of-type {
+        width: 50px;
+      }
+
+      tbody tr:not(:last-child) {
+        border-bottom: 10px solid #a86440;
+      }
+
+      tbody {
+        tr {
+          &:nth-of-type(3n + 1) {
+            background: url('../../assets/pngs/yellow-book-spine.png') no-repeat
+              center center;
+            background-size: cover;
+            background-clip: content-box;
+            background-position: top 10px right 10px;
+          }
+          &:nth-of-type(3n + 2) {
+            background: url('../../assets/pngs/blue-book-spine.png') no-repeat
+              center center;
+            background-size: cover;
+            background-clip: content-box;
+            background-position: top 10px right 10px;
+          }
+          &:nth-of-type(3n) {
+            background: url('../../assets/pngs/green-book-spine.png') no-repeat
+              center center;
+            background-size: cover;
+            background-clip: content-box;
+            background-position: top 10px right 10px;
+          }
+          &:last-of-type {
+            .book-row__image {
+              height: calc(100% - 15px);
+            }
+          }
+          position: relative;
+          > * {
+            position: relative;
+          }
+          td {
+            z-index: 1;
+          }
+        }
+      }
+
+      &__header {
+        th {
+          padding: 0 0 5px 10px;
+          position: relative;
+        }
+        height: 80px;
+        &__cell {
+          &__random-wrapper {
+            padding: 0 2px;
+            position: absolute;
+            bottom: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            p {
+              margin: 0;
+            }
+          }
+
+          @include assign-random-heights-table-header(0, 4, 30, 58);
+          &.edit {
+            width: 25px;
+          }
+          &.delete {
+            width: 40px;
+          }
+        }
+        tr {
+          border-bottom: 10px solid #a86440;
+        }
+      }
+    }
+  }
+  .button-container {
+    display: flex;
+    width: inherit;
+    .custom-button {
+      a {
+        display: flex;
+        text-decoration: none;
+        color: #000;
+      }
+    }
+    .add-book-button-holder {
+      width: 100px;
+      height: 180px;
+      background: url('../../assets/flower-pot.webp') no-repeat center center;
+      background-size: cover;
+      position: relative;
+
+      a {
+        position: absolute;
+        bottom: 15%;
+
+        p {
+          width: 90px;
+          color: #ffffff;
+          font-weight: 700;
+          text-shadow:
+            -1px -1px 0 #000,
+            1px -1px 0 #000,
+            -1px 1px 0 #000,
+            1px 1px 0 #000;
+          margin: 10px 0 0 0;
+        }
+      }
+    }
+  }
+  .table-footer {
+    width: calc(100% - 20px);
+    display: flex;
+    justify-content: space-between;
+    .trapezium {
+      width: 40px;
+      height: 30px;
+      background-color: #a86440;
+      clip-path: polygon(0 0, 100% 0, 80% 100%, 20% 100%);
+    }
+  }
+}
+
+.error {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  p {
+    font-size: 28px;
+    text-align: center;
+  }
+}
+
+img {
+  cursor: pointer;
+}
+
+.box {
+  position: relative;
+
+  padding: 0 3px;
+  .lid {
+    width: calc(100% + 2.5px);
+    height: 19px;
+    position: absolute;
+    top: -10px;
+    left: -1.25px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.5);
+  }
+}
+.box-0,
+.lid-0 {
+  background: url('../../assets/pngs/pink-box.png') no-repeat center center;
+  background-size: cover;
+}
+.box-1,
+.lid-1 {
+  background: url('../../assets/pngs/blue-box.png') no-repeat center center;
+  background-size: cover;
+}
+.box-2,
+.lid-2 {
+  background: url('../../assets/pngs/green-box.png') no-repeat center center;
+  background-size: cover;
+}
+.box-3,
+.lid-3 {
+  background: url('../../assets/pngs/orange-box.png') no-repeat center center;
+  background-size: cover;
+}
+.box-4,
+.lid-4 {
+  background: url('../../assets/pngs/yellow-box.png') no-repeat center center;
+  background-size: cover;
+}
