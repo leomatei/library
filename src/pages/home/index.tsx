@@ -18,6 +18,7 @@ import { type Book } from '../../types'
 import ModalDelete from '../../components/modal-delete'
 import ModalDetailsBook from '../../components/modal-book-details'
 
+import InfoSVG from '../../assets/svgs/info.svg'
 import RefreshSVG from '../../assets/svgs/refresh.svg'
 
 import './styles.scss'
@@ -83,7 +84,7 @@ const MainPage: React.FC = (): JSX.Element => {
     { column: 'Delete', type: 'delete' },
     { column: 'Title', type: 'text' },
     { column: 'Author', type: 'text' },
-    { column: 'Description', type: 'text' }
+    { column: 'Description', type: 'text', icon: InfoSVG }
   ]
 
   return (
@@ -116,7 +117,17 @@ const MainPage: React.FC = (): JSX.Element => {
                         )}
                       >
                         <div className={cx('lid', `lid-${index}`)}></div>
-                        <p>{column.column}</p>
+                        <p>
+                          {column.column}
+                          {column.icon && (
+                            <img
+                              src={column.icon}
+                              width='16'
+                              height='16'
+                              title='Click on description of a book to see all the details'
+                            />
+                          )}
+                        </p>
                       </div>
                     </TableCell>
                   )
