@@ -9,7 +9,6 @@
   @for $i from $start through $end {
     .random-wrapper-#{$i} {
       height: random-height($min-height, $max-height);
-      // background-color: #e46880;
     }
   }
 }
