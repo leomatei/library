@@ -1,6 +1,12 @@
-form {
+.form {
   display: flex;
   flex-direction: column;
+  background: url('../../assets/pngs/opened-book.png') no-repeat center center;
+  background-size: cover;
+  width: 700px;
+  height: 500px;
+  padding: 20px 45px;
+  box-sizing: border-box;
   > * {
     margin: 16px 0 8px 0;
   }
