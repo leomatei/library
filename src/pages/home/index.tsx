@@ -11,6 +11,8 @@ import {
 import { useQuery } from '@apollo/client'
 import cx from 'classnames'
 
+import ErrorPage from './error'
+
 import { ModalContext } from '../../custom-hooks/modalContextProvider'
 import BookRow from '../../components/custom-table-row/'
 import { GET_BOOKS } from '../../graphql/queries'
@@ -18,8 +20,7 @@ import { type Book } from '../../types'
 import ModalDelete from '../../components/modal-delete'
 import ModalDetailsBook from '../../components/modal-book-details'
 
-import InfoSVG from '../../assets/svgs/info.svg'
-import RefreshSVG from '../../assets/svgs/refresh.svg'
+import { HEADER_COLUMNS } from '../../constants/constants'
 
 import './styles.scss'
 
@@ -61,31 +62,8 @@ const MainPage: React.FC = (): JSX.Element => {
   }
 
   if (error) {
-    return (
-      <div className='error'>
-        <p>
-          Error loading books.
-          <br /> Try refreshing the page up to three times. The Postgres DB on
-          Vercel stops after 5 minutes of inactivity.
-        </p>
-        <img
-          width='40px'
-          height='40px'
-          src={RefreshSVG}
-          onClick={() => {
-            window.location.reload()
-          }}
-        />
-      </div>
-    )
+    return <ErrorPage />
   }
-  const HEADER_COLUMNS = [
-    { column: 'Edit', type: 'edit' },
-    { column: 'Delete', type: 'delete' },
-    { column: 'Title', type: 'text' },
-    { column: 'Author', type: 'text' },
-    { column: 'Description', type: 'text', icon: InfoSVG }
-  ]
 
   return (
     <ModalContext.Provider value={contextValue}>
