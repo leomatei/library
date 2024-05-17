@@ -12,13 +12,11 @@ const CustomModal: React.FC<CustomModalProps> = ({
   acceptText,
   onAccept,
   title,
-  children,
-  customClassName
+  children
 }) => {
-  console.log(customClassName)
   return (
     <Modal open={open} onClose={onClose}>
-      <div className={`modal ${customClassName}`}>
+      <div className='modal'>
         <Typography variant='h5' gutterBottom>
           {title}
         </Typography>

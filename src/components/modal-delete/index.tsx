@@ -42,7 +42,6 @@ const ModalDelete: React.FC<ModalDeleteProps> = ({ deleteCallback }) => {
       acceptText='Delete'
       onAccept={deleteBook}
       closeText='Cancel'
-      customClassName='delete-modal'
       onClose={() => {
         setShowModal(false)
         setSelectedBook(null)

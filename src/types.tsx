@@ -28,7 +28,6 @@ export interface CustomModalProps {
   onAccept?: () => void
   title: string
   children: ReactNode
-  customClassName?: string
 }
 
 export interface BookFormProps {

@@ -40,6 +40,7 @@ const BookForm: React.FC<BookFormProps> = ({
         onSubmit={async (e) => {
           await handleSubmit(e, formData)
         }}
+        className='form'
       >
         <TextField
           fullWidth

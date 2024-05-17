@@ -1,35 +1,31 @@
 @import '../../mixins.scss';
 
 .main-page-container {
+  display: flex;
+  flex-direction: column;
   text-align: center;
   height: 100%;
   margin: 0 5vw;
   overflow: auto;
 
-  display: flex;
-  flex-direction: column;
-
   .button-container {
     display: flex;
     justify-content: flex-start;
     width: inherit;
-    .custom-button {
-      a {
-        display: flex;
-        text-decoration: none;
-        color: #000;
-      }
-    }
     .add-book-button-holder {
       width: 100px;
       height: 180px;
-      background: url('../../assets/flower-pot.webp') no-repeat center center;
+      background: url('../../assets/webps/flower-pot.webp') no-repeat center
+        center;
       background-size: cover;
       position: relative;
 
       a {
         position: absolute;
         bottom: 15%;
+        display: flex;
+        text-decoration: none;
+        color: #000;
 
         p {
           width: 90px;
@@ -48,7 +44,6 @@
 
   .table-container {
     width: 690px;
-
     .custom-table {
       border: 10px solid #a86440;
       background-color: #4d2a19;
@@ -62,59 +57,20 @@
           -1px 1px 0 #000,
           1px 1px 0 #000;
       }
+      &__header {
+        height: 80px;
 
-      th:last-of-type {
-        width: 50px;
-      }
-
-      tbody tr:not(:last-child) {
-        border-bottom: 10px solid #a86440;
-      }
-
-      tbody {
         tr {
-          &:nth-of-type(3n + 1) {
-            background: url('../../assets/pngs/yellow-book-spine.png') no-repeat
-              center center;
-            background-size: cover;
-            background-clip: content-box;
-            background-position: top 10px right 10px;
-          }
-          &:nth-of-type(3n + 2) {
-            background: url('../../assets/pngs/blue-book-spine.png') no-repeat
-              center center;
-            background-size: cover;
-            background-clip: content-box;
-            background-position: top 10px right 10px;
-          }
-          &:nth-of-type(3n) {
-            background: url('../../assets/pngs/green-book-spine.png') no-repeat
-              center center;
-            background-size: cover;
-            background-clip: content-box;
-            background-position: top 10px right 10px;
-          }
-          &:last-of-type {
-            .book-row__image {
-              height: calc(100% - 15px);
-            }
-          }
-          position: relative;
-          > * {
+          border-bottom: 10px solid #a86440;
+          th {
+            padding: 0 0 5px 10px;
             position: relative;
           }
-          td {
-            z-index: 1;
+          th:last-of-type {
+            width: 50px;
           }
         }
-      }
 
-      &__header {
-        th {
-          padding: 0 0 5px 10px;
-          position: relative;
-        }
-        height: 80px;
         &__cell {
           &__random-wrapper {
             padding: 0 2px;
@@ -136,8 +92,44 @@
             width: 40px;
           }
         }
+      }
+
+      tbody {
         tr {
-          border-bottom: 10px solid #a86440;
+          position: relative;
+          margin: 0;
+
+          > * {
+            position: relative;
+          }
+          td {
+            z-index: 1;
+          }
+          &:nth-of-type(3n + 1) {
+            background: url('../../assets/pngs/yellow-book-spine.png') no-repeat
+              center center;
+            background-size: cover;
+            background-clip: content-box;
+            background-position: top 10px right 10px;
+          }
+          &:nth-of-type(3n + 2) {
+            background: url('../../assets/pngs/blue-book-spine.png') no-repeat
+              center center;
+            background-size: cover;
+            background-clip: content-box;
+            background-position: top 10px right 10px;
+          }
+          &:nth-of-type(3n) {
+            background: url('../../assets/pngs/green-book-spine.png') no-repeat
+              center center;
+            background-size: cover;
+            background-clip: content-box;
+            background-position: top 10px right 10px;
+          }
+
+          &:not(:last-child) {
+            border-bottom: 10px solid #a86440;
+          }
         }
       }
     }
@@ -157,6 +149,10 @@
   }
 }
 
+img {
+  cursor: pointer;
+}
+
 .error {
   height: 100vh;
   display: flex;
@@ -167,10 +163,6 @@
     font-size: 28px;
     text-align: center;
   }
-}
-
-img {
-  cursor: pointer;
 }
 
 .box {
